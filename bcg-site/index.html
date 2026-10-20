@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Baby Chair Gang</title>
+<style>
+:root{--ink:#0a2150;--night:#07153a;--panel:#14336f;--blue:#2468f0;--sky:#6aa8ff;--yellow:#f6ff52;--text:#eef3ff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--night)}
+body{margin:0;min-height:100vh;color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6;
+background:radial-gradient(900px 500px at 50% -10%,#2a4fa8 0,transparent 70%),linear-gradient(#0a2150,#07153a 60%)}
+body.inv main{filter:invert(1) contrast(1.6)}
+main{max-width:960px;margin:0 auto;padding:24px 20px 56px}
+.hero{display:block;width:100%;height:auto;filter:drop-shadow(0 18px 40px rgba(36,104,240,.35))}
+h1{font-size:clamp(2.4rem,8vw,5rem);line-height:1;margin:36px 0 12px;letter-spacing:-.02em;text-shadow:4px 4px 0 var(--blue)}
+.official{font-size:1.25rem;margin:0 0 24px;max-width:60ch;color:#c9d8ff}
+.banner{display:inline-block;background:var(--yellow);color:var(--ink);padding:12px 22px;font-size:1.3rem;font-weight:bold;transform:skew(-8deg);box-shadow:6px 6px 0 var(--blue)}
+.banner span{display:inline-block;transform:skew(8deg)}
+.panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:44px}
+.panel{background:var(--panel);border-left:6px solid var(--yellow);padding:20px 24px}
+.panel h2{margin:0 0 8px;font-size:1.3rem}
+.panel p{margin:0}
+.contact a{color:var(--yellow);overflow-wrap:anywhere}
+button{font:inherit;font-size:1.25rem;font-weight:bold;background:var(--yellow);color:var(--ink);border:0;padding:14px 26px;margin-top:12px;cursor:pointer;box-shadow:5px 5px 0 var(--blue);transition:transform .08s,box-shadow .08s}
+button:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--blue)}
+button:active{transform:translate(4px,4px);box-shadow:1px 1px 0 var(--blue)}
+button:focus-visible,.contact a:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+.count{font-size:1.1rem;margin-top:14px}.count b{font-size:2.2rem;color:var(--yellow);display:inline-block}
+.count b.bump{animation:bump .3s}
+@keyframes bump{50%{transform:scale(1.4)}}
+#slash{position:fixed;left:50%;top:50%;height:10px;width:0;opacity:0;z-index:9;pointer-events:none;background:#fff;box-shadow:0 0 18px 6px #fff,0 0 60px 20px var(--sky);transform:translate(-50%,-50%)}
+#huge{position:fixed;inset:0;z-index:12;pointer-events:none;overflow:hidden}
+#huge .hbg{position:absolute;inset:0;background:#000;opacity:0}
+#huge .hlines{position:absolute;left:50%;top:50%;width:260vmax;height:260vmax;margin:-130vmax 0 0 -130vmax;opacity:0;background:repeating-conic-gradient(#d8ffe6 0 .5deg,transparent .5deg 3deg);-webkit-mask:radial-gradient(circle,transparent 6%,#000 24%,transparent 62%);mask:radial-gradient(circle,transparent 6%,#000 24%,transparent 62%)}
+#huge .hv{position:absolute;top:50%;writing-mode:vertical-rl;font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;font-weight:900;font-size:min(17vmin,22vw);line-height:1;color:#fff;text-shadow:0 0 2.5vmin #2bd96b,0 0 6vmin #2bd96b;opacity:0;white-space:nowrap}
+#huge .hv.l{left:7%;transform:translateY(-50%)}
+#huge .hv.r{right:7%;transform:translateY(-50%)}
+#huge .hbig{position:absolute;left:50%;top:50%;font-family:"Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif;font-weight:900;font-size:min(55vmin,80vw);line-height:1;color:#000;text-shadow:2vmin 2vmin 0 #2bd96b;white-space:nowrap;opacity:0;transform:translate(-50%,-50%)}
+#huge .hbar{position:absolute;left:50%;top:50%;height:3.4vmin;background:#fff;clip-path:polygon(0 50%,6% 0,94% 0,100% 50%,94% 100%,6% 100%);filter:drop-shadow(0 0 14px #2bd96b);opacity:0}
+#dark{position:fixed;inset:0;background:#000;opacity:0;z-index:7;pointer-events:none}
+#lines{position:fixed;left:50%;top:50%;width:220vmax;height:220vmax;margin:-110vmax 0 0 -110vmax;opacity:0;z-index:8;pointer-events:none;background:repeating-conic-gradient(#fff 0 1.2deg,transparent 1.2deg 6deg);-webkit-mask:radial-gradient(circle,transparent 8%,#000 30%,transparent 70%);mask:radial-gradient(circle,transparent 8%,#000 30%,transparent 70%)}
+#ring{position:fixed;left:50%;top:50%;width:40vmin;height:40vmin;margin:-20vmin 0 0 -20vmin;border:8px solid #fff;border-radius:50%;opacity:0;z-index:8;pointer-events:none;box-shadow:0 0 40px 10px var(--sky)}
+#flash{position:fixed;inset:0;background:#fff;opacity:0;z-index:8;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.count b.bump{animation:none}}
+footer{margin-top:48px;color:#8fa9e0;font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+<svg class="hero" viewBox="0 0 1000 563" role="img" aria-label="Two crescents facing each other behind a crossed-out X, with a baby chair on each side">
+<rect width="1000" height="563" fill="#0a2150"/>
+<polygon points="280,0 720,0 990,296 705,563 295,563 10,298" fill="#2a4fa8"/>
+<path d="M318 90C440 100 500 190 497 275C494 380 420 450 318 457C390 400 410 330 405 270C400 190 370 130 318 90Z" fill="#2468f0"/>
+<path d="M680 90C560 100 500 190 500 275C505 380 580 450 680 457C610 400 590 330 595 270C600 190 630 130 680 90Z" fill="#f6ff52"/>
+<g stroke="#6aa8ff" stroke-width="30"><line x1="180" y1="112" x2="825" y2="452"/><line x1="825" y1="112" x2="180" y2="452"/></g>
+<defs><g id="chair" fill="#0a2150" stroke="#0a2150" stroke-linejoin="round">
+<polygon points="100,199 171,192 176,263 216,280 213,292 137,301 122,291 107,282 106,279" stroke="none"/>
+<g fill="none" stroke-width="10"><polyline points="123,290 97,306 85,366"/><polyline points="128,292 113,318 125,400"/><polyline points="214,288 222,305 230,387"/><polyline points="195,294 181,351"/></g>
+</g></defs>
+<use href="#chair"/>
+<use href="#chair" x="670" y="-11"/>
+<text x="225" y="292" font-family="Georgia,serif" font-size="34" fill="#0000ff" textLength="240" lengthAdjust="spacingAndGlyphs">Victory against</text>
+<text x="553" y="292" font-family="Georgia,serif" font-size="34" fill="#000" textLength="210" lengthAdjust="spacingAndGlyphs">Goobelandea</text>
+</svg>
+
+<h1>Baby Chair Gang</h1>
+<p class="official">The official website for Baby Chair Gang.</p>
+<div class="banner"><span>Victory against Goobelandea</span></div>
+
+<div class="panels">
+<section class="panel contact"><h2>Contact us</h2><p>For contacting us, email <a href="mailto:babychairgang@gmail.com">babychairgang@gmail.com</a></p></section>
+<section class="panel"><h2>Join the gang</h2><button id="join" type="button">Join</button><div class="count"><b id="n">0</b> clicks so far</div><div class="count"><b id="m">0</b> members joined</div></section>
+<section class="panel theme"><h2>Rush Baby Chair</h2><p>Theme of Baby Chair Gang</p><button id="play" type="button" aria-pressed="false">▶ Play</button><audio id="theme" preload="none" src="assets/rush-baby-chair.mp3"></audio></section>
+</div>
+
+<footer>More coming soon.</footer>
+</main>
+<div id="dark"></div><div id="lines"></div><div id="ring"></div><div id="flash"></div><div id="slash"></div>
+<script>
+(function(){
+var n=document.getElementById("n"),btn=document.getElementById("join");
+var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+var mEl=document.getElementById("m"),srvClicks=0,pending=0,srvMembers=0,joined=false,joinPending=false,vid="";
+try{joined=localStorage.getItem("bcg_joined")==="1";vid=localStorage.getItem("bcg_vid")||"";if(!vid){vid=crypto.randomUUID();localStorage.setItem("bcg_vid",vid)}}catch(e){}
+if(!vid)vid=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Math.random()).slice(2)+String(Date.now())+"xxxxxxxxxxxx";
+function bump(el,on){if(on&&!reduce){el.classList.remove("bump");void el.offsetWidth;el.classList.add("bump")}}
+function show(b){n.textContent=(srvClicks+pending).toLocaleString();bump(n,b)}
+function showM(b){mEl.textContent=(srvMembers+(joinPending?1:0)).toLocaleString();bump(mEl,b)}
+function apply(d){if(d&&typeof d.clicks==="number"){srvClicks=d.clicks;srvMembers=d.members;show(false);showM(false)}}
+function post(body){return fetch("/api/stats",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}).then(function(r){if(!r.ok)throw new Error("bad");return r.json()})}
+function poll(){fetch("/api/stats").then(function(r){return r.json()}).then(apply).catch(function(){})}
+var bar=document.getElementById("slash"),flash=document.getElementById("flash"),main=document.querySelector("main"),flip=false,busy=false;
+function slashFx(){
+ if(busy)return;busy=true;
+ var w=innerWidth,h=innerHeight,len=Math.hypot(w,h)*1.15,ang=Math.atan2(h,w)*(flip?-1:1);flip=!flip;
+ bar.style.width=len+"px";
+ var t=function(sx,sy){return "translate(-50%,-50%) rotate("+ang+"rad) scale("+sx+","+sy+")"};
+ bar.style.opacity=1;
+ if(reduce){bar.animate([{transform:t(1,1),opacity:1},{transform:t(1,0),opacity:0}],{duration:350,fill:"forwards"}).onfinish=function(){bar.style.opacity=0;busy=false};return}
+ document.body.classList.add("inv");
+ flash.animate([{opacity:.9},{opacity:0}],{duration:200});
+ setTimeout(function(){document.body.classList.remove("inv")},110);
+ main.animate([{transform:"translate(0,0)"},{transform:"translate(-14px,9px)"},{transform:"translate(11px,-7px)"},{transform:"translate(-6px,4px)"},{transform:"translate(0,0)"}],{duration:300,easing:"ease-out"});
+ bar.animate([{transform:t(0,1),opacity:1},{transform:t(1,1),opacity:1,offset:.2},{transform:t(1,2.4),opacity:1,offset:.4},{transform:t(1,0),opacity:0}],{duration:650,easing:"cubic-bezier(.2,.8,.2,1)",fill:"forwards"}).onfinish=function(){bar.style.opacity=0;busy=false}}
+function bigFx(){
+ if(reduce){slashFx();return}
+ if(busy)return;busy=true;
+ var dk=document.getElementById("dark"),ln=document.getElementById("lines"),rg=document.getElementById("ring");
+ var w=innerWidth,h=innerHeight,len=Math.hypot(w,h)*1.2,ang=Math.atan2(h,w)*(flip?-1:1);flip=!flip;
+ bar.style.width=len+"px";
+ var t=function(sx,sy){return "translate(-50%,-50%) rotate("+ang+"rad) scale("+sx+","+sy+")"};
+ dk.animate([{opacity:0},{opacity:.96,offset:.08},{opacity:.96,offset:.62},{opacity:0}],{duration:1500,easing:"ease-out"});
+ bar.style.opacity=1;
+ bar.animate([{transform:t(0,.25),opacity:1},{transform:t(1,.25),opacity:1,offset:.1},{transform:t(1,.18),opacity:1,offset:.5},{transform:t(1,1),opacity:1,offset:.54},{transform:t(1,22),opacity:1,offset:.66},{transform:t(1,0),opacity:0}],{duration:1500,easing:"linear",fill:"forwards"}).onfinish=function(){bar.style.opacity=0;busy=false};
+ setTimeout(function(){
+  document.body.classList.add("inv");setTimeout(function(){document.body.classList.remove("inv")},140);
+  flash.animate([{opacity:1},{opacity:1,offset:.25},{opacity:0}],{duration:600});
+  ln.animate([{opacity:1,transform:"scale(.15) rotate(0deg)"},{opacity:0,transform:"scale(1.1) rotate(8deg)"}],{duration:700,easing:"ease-out"});
+  rg.animate([{opacity:1,transform:"scale(.2)"},{opacity:0,transform:"scale(4.5)"}],{duration:750,easing:"cubic-bezier(.1,.7,.2,1)"});
+  main.animate([{transform:"translate(0,0)"},{transform:"translate(-26px,16px)"},{transform:"translate(22px,-14px)"},{transform:"translate(-14px,9px)"},{transform:"translate(8px,-5px)"},{transform:"translate(0,0)"}],{duration:520,easing:"ease-out"})
+ },780)}
+function zoroFx(){
+ if(reduce){slashFx();return}
+ if(busy)return;busy=true;
+ var w=innerWidth,h=innerHeight,len=Math.hypot(w,h)*1.3,a=Math.atan2(h,w);
+ var box=document.createElement("div");box.id="huge";
+ box.innerHTML='<div class="hbg"></div><div class="hlines"></div>';
+ document.body.appendChild(box);
+ var bg=box.children[0],ln=box.children[1],bars=[],rg=document.getElementById("ring");
+ var T=function(r,sx,sy){return "translate(-50%,-50%) rotate("+r+"rad) scale("+sx+","+sy+")"};
+ [a*.85,-a*.85,-.06].forEach(function(r){var b=document.createElement("div");b.className="hbar";b.style.width=len+"px";b.dataset.r=r;box.appendChild(b);bars.push(b)});
+ var shake=function(d,m){main.animate([{transform:"translate(0,0)"},{transform:"translate("+-m+"px,"+m*.6+"px)"},{transform:"translate("+m*.8+"px,"+-m*.5+"px)"},{transform:"translate("+-m*.5+"px,"+m*.3+"px)"},{transform:"translate(0,0)"}],{duration:d})};
+ bg.style.opacity=1;
+ ["#fff","#000","#fff","#000"].forEach(function(c,i){setTimeout(function(){bg.style.background=c},i*70)});
+ setTimeout(function(){
+  ln.animate([{opacity:1,transform:"scale(.4)"},{opacity:1,transform:"scale(1)"}],{duration:1500,fill:"forwards",easing:"ease-out"});
+  shake(300,16)},280);
+ bars.forEach(function(b,i){setTimeout(function(){var r=+b.dataset.r;b.style.opacity=1;b.animate([{transform:T(r,0,.12)},{transform:T(r,1,.12)}],{duration:420,fill:"forwards",easing:"cubic-bezier(.3,0,.2,1)"})},800+i*120)});
+ setTimeout(function(){
+  bg.style.background="#fff";ln.style.opacity=0;
+  box.style.filter="invert(1)";setTimeout(function(){box.style.filter=""},120);
+  bars.forEach(function(b){var r=+b.dataset.r;b.animate([{transform:T(r,1,.12),opacity:1},{transform:T(r,1,1.5),opacity:1,offset:.12},{transform:T(r,1,.05),opacity:0}],{duration:900,fill:"forwards",easing:"ease-out"})});
+  rg.animate([{opacity:1,transform:"scale(.2)"},{opacity:0,transform:"scale(5)"}],{duration:800,easing:"cubic-bezier(.1,.7,.2,1)"});
+  flash.animate([{opacity:.8},{opacity:0}],{duration:300});
+  shake(600,38)},1750);
+ setTimeout(function(){box.animate([{opacity:1},{opacity:0}],{duration:600,fill:"forwards"})},2850);
+ setTimeout(function(){box.remove();busy=false},3500)}
+btn.addEventListener("click",function(){
+ if(!joined){joined=true;joinPending=true;try{localStorage.setItem("bcg_joined","1")}catch(e){}showM(true);
+  post({action:"join",visitorId:vid}).then(function(d){joinPending=false;apply(d)}).catch(function(){joined=false;joinPending=false;try{localStorage.removeItem("bcg_joined")}catch(e){}showM(false)})}
+ pending++;show(true);
+ var total=srvClicks+pending;
+ post({action:"click"}).then(function(d){pending--;apply(d)}).catch(function(){pending--;show(false)});
+ if(total%10===0){if(Math.random()<.25)zoroFx();else bigFx()}else slashFx()});
+show(false);showM(false);poll();setInterval(poll,10000);
+})();
+</script>
+<script>
+(function(){var a=document.getElementById("theme"),b=document.getElementById("play");
+function set(p){b.textContent=p?"❚❚ Pause":"▶ Play";b.setAttribute("aria-pressed",p?"true":"false")}
+b.addEventListener("click",function(){if(a.paused){a.play().then(function(){set(true)}).catch(function(){set(false)})}else{a.pause();set(false)}});
+a.addEventListener("ended",function(){set(false)});})();
+</script>
+</body>
+</html>
