@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of Service - Baby Chair Gang</title>
+<style>
+:root{--ink:#0a2150;--night:#07153a;--panel:#14336f;--blue:#2468f0;--yellow:#f6ff52;--text:#eef3ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6;background:linear-gradient(#0a2150,#07153a 60%);padding:max(20px,env(safe-area-inset-top)) 20px 40px}
+main{max-width:720px;margin:0 auto}h1{font-size:clamp(2rem,6vw,3rem);margin:0 0 4px;text-shadow:3px 3px 0 var(--blue)}
+.sub{color:#c9d8ff;margin:0 0 20px}
+.page{background:var(--panel);border-left:6px solid var(--yellow);padding:20px 24px;margin:16px 0}
+.page h2{margin:0 0 10px}.page li{margin:8px 0}
+.js .page{display:none}.js .page.on{display:block}
+.nav{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:16px}
+button,.btn{font:inherit;font-weight:bold;background:var(--yellow);color:var(--ink);border:0;padding:10px 20px;cursor:pointer;text-decoration:none;box-shadow:4px 4px 0 var(--blue)}
+button:disabled{opacity:.4;cursor:default}
+.final{border-left-color:#ff8a9a}.final strong{color:var(--yellow)}
+a{color:var(--yellow)}
+</style></head><body><main>
+<h1>Terms of Service</h1><p class="sub">Baby Chair Gang &middot; <span id="pg">Page 1 of 6</span></p>
+
+<section class="page"><h2>Page 1: Welcome (and Please Relax)</h2><ul>
+<li>These terms are a joke. They are for fun. They are not a real legal contract, they are not legal advice, and no lawyer has ever looked at them.</li>
+<li>Nothing here gives anyone real power over anyone else. Nobody can arrest you, fine you, or send you to the shadow realm.</li>
+<li>If you are confused about whether something here is serious: it is not. Go be normal.</li>
+</ul></section>
+
+<section class="page"><h2>Page 2: Things Clicking "Join" Does Not Do</h2><ul>
+<li>Clicking Join does not give you the right to commit terrorism, crimes, fraud, or any other bad stuff. Please do not do those.</li>
+<li>It does not make you a real soldier, a real captain, or a real anything. It is a website.</li>
+<li>It does not let you break the speed limit, skip the line, or take other people's snacks.</li>
+<li>It does not turn you into a chair, a baby, or a baby chair. Probably.</li>
+</ul></section>
+
+<section class="page"><h2>Page 3: Be Decent</h2><ul>
+<li>Do not be a jerk. Do not harass, threaten, or bully anyone.</li>
+<li>Do not pick a name that is hateful, that pretends to be someone else, or that uses someone's real private information.</li>
+<li>Your username is public. Your real name is only shown to other members, under your username. Only enter your own real name, never someone else's.</li>
+<li>Do not spam the Join button with robots or scripts. Normal humans clicking is fine. Go wild, responsibly.</li>
+</ul></section>
+
+<section class="page"><h2>Page 4: Names and Ranks</h2><ul>
+<li>Every name can only be used by one person. First come, first served.</li>
+<li>Everyone starts as a Member. An admin can give you other ranks, or take them away, whenever they feel like it.</li>
+<li>Ranks are for bragging rights only. "Head Of Military Affairs" does not come with a military, and nobody has any real wars to run.</li>
+<li>An admin may change or remove a name or rank, for example if it is rude or if the Founder just wants to.</li>
+</ul></section>
+
+<section class="page"><h2>Page 5: The Boring-But-Honest Page</h2><ul>
+<li>We store the username and real name you type (the real name is shown to people who have joined, not to visitors), your click count, and a scrambled (hashed) version of your internet address, which is only used to stop spam. We do not sell any of it.</li>
+<li>Warning: clicking Join can set off bright flashing screen effects. If flashing lights bother you or might cause health problems, please do not click it.</li>
+<li>The website may be down, slow, or wrong. The counters might be off by a few. This is fine.</li>
+<li>The song "Rush Baby Chair" is the theme of the gang. Listening is optional, but encouraged.</li>
+</ul></section>
+
+<section class="page final"><h2>Page 6: The Goobelandea Clause</h2><ul>
+<li><strong>Joining this group means that you leave Goobelandea and are in Baby Chair Gang, and you cannot join back in Goobelandea after this.</strong></li>
+<li>There are no take-backs, no trial periods, and no sneaking back in through a side door.</li>
+<li>Victory against Goobelandea.</li>
+</ul>
+<p>That's all. Thank you for reading all six pages, which is more than most people do.</p>
+<a class="btn" href="index.html">Back to the website</a></section>
+
+<div class="nav"><button id="back" type="button">Back</button><button id="next" type="button">Next</button></div>
+</main>
+<script>
+(function(){var p=[].slice.call(document.querySelectorAll(".page")),i=0,b=document.getElementById("back"),n=document.getElementById("next"),l=document.getElementById("pg");
+document.documentElement.classList.add("js");
+function go(k){i=Math.max(0,Math.min(p.length-1,k));p.forEach(function(e,j){e.classList.toggle("on",j===i)});b.disabled=i===0;n.disabled=i===p.length-1;l.textContent="Page "+(i+1)+" of "+p.length;scrollTo(0,0)}
+b.onclick=function(){go(i-1)};n.onclick=function(){go(i+1)};go(0)})();
+</script></body></html>

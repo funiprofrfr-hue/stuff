@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Members - Baby Chair Gang</title>
+<style>
+:root{--ink:#0a2150;--night:#07153a;--panel:#14336f;--blue:#2468f0;--sky:#6aa8ff;--yellow:#f6ff52;--text:#eef3ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6;background:linear-gradient(#0a2150,#07153a 60%);padding:max(20px,env(safe-area-inset-top)) 20px 40px}
+main{max-width:760px;margin:0 auto}h1{font-size:clamp(2rem,6vw,3rem);margin:0 0 4px;text-shadow:3px 3px 0 var(--blue)}
+.sub{color:#c9d8ff;margin:0 0 20px}a{color:var(--yellow)}
+.note{background:var(--panel);border-left:6px solid var(--sky);padding:12px 18px;margin:0 0 20px}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+li{background:var(--panel);border-left:6px solid var(--yellow);padding:12px 18px}
+.nm{font-size:1.25rem;font-weight:bold}.real{color:#c9d8ff;font-size:.95rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{font-size:.8rem;font-weight:bold;padding:2px 8px;white-space:nowrap}
+.ts{background:var(--yellow);color:var(--ink)}.ta{background:var(--blue);color:#fff}.tb{background:var(--sky);color:var(--ink)}
+.tc{background:#8fa9e0;color:var(--ink)}.td{background:#3a5aa0;color:#fff}
+</style></head><body><main>
+<h1>Our Members</h1>
+<p class="sub"><span id="cnt">0</span> members &middot; <a href="index.html">Back to the website</a></p>
+<p class="note" id="note"></p>
+<ul id="roster"></ul>
+</main>
+<script>
+(function(){
+var vid="";try{vid=localStorage.getItem("bcg_vid")||""}catch(e){}
+var T={Founder:"s",Captain:"s","Head Of Military Affairs":"s",Commander:"a",Lieutenant:"b",Soldier:"c"};
+function chip(r){var s=document.createElement("span");s.className="chip t"+(T[r]||"d");s.textContent=r;return s}
+fetch("/api/stats",{headers:{"x-visitor-id":vid}}).then(function(r){return r.json()}).then(function(d){
+ document.getElementById("cnt").textContent=d.members;
+ document.getElementById("note").textContent=d.me?"You're a member, so you can see everyone's real name under their username.":"Visitors see usernames only. Join the gang on the main page to see real names.";
+ var ul=document.getElementById("roster");
+ if(!d.roster.length){ul.textContent="Nobody has joined yet.";return}
+ d.roster.forEach(function(m){var li=document.createElement("li"),n=document.createElement("div"),c=document.createElement("div");
+  n.className="nm";n.textContent=m.name;li.append(n);
+  if(m.real){var r=document.createElement("div");r.className="real";r.textContent=m.real;li.append(r)}
+  c.className="chips";m.ranks.forEach(function(x){c.append(chip(x))});li.append(c);ul.append(li)})
+}).catch(function(){document.getElementById("note").textContent="Could not load the members list. Try again later."});
+})();
+</script></body></html>

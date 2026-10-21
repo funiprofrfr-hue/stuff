@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>BCG Admin</title>
+<style>
+body{margin:0;background:#07153a;color:#eef3ff;font-family:Georgia,serif;line-height:1.5;padding:20px}
+main{max-width:900px;margin:0 auto}h1{margin-top:0}
+input[type=password]{font:inherit;padding:10px;font-size:1.1rem;border:2px solid #6aa8ff;background:#0a2150;color:#eef3ff}
+button{font:inherit;font-weight:bold;background:#f6ff52;color:#0a2150;border:0;padding:8px 16px;cursor:pointer}
+button.x{background:#ff8a9a}
+.m{background:#14336f;border-left:6px solid #f6ff52;padding:14px 18px;margin:12px 0}
+.m h2{margin:0 0 8px;font-size:1.2rem;overflow-wrap:anywhere}
+.tier{display:flex;flex-wrap:wrap;gap:4px 18px;margin:4px 0}
+.tier b{width:70px;color:#f6ff52}.tier label{white-space:nowrap}
+.msg{color:#ff8a9a;min-height:1.4em}
+</style></head><body><main>
+<h1>Baby Chair Gang admin</h1>
+<form id="login"><label>Admin password <input id="pw" type="password" autocomplete="current-password" required></label> <button>Log in</button></form>
+<p class="msg" id="msg" role="alert"></p>
+<div id="list"></div>
+</main>
+<script>
+(function(){
+var TIERS=[["S",["Founder","Captain","Head Of Military Affairs"]],["A",["Commander"]],["B",["Lieutenant"]],["C",["Soldier"]],["D",["Recruit","Member"]]];
+var pw=sessionStorage.getItem("bcg_admin")||"",msg=document.getElementById("msg"),list=document.getElementById("list");
+function call(body){body.password=pw;return fetch("/api/admin",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error||"Error");return j})})}
+function render(d){msg.textContent="";list.textContent="";if(!d.members.length){list.textContent="Nobody has joined yet.";return}
+ d.members.forEach(function(m){var box=document.createElement("div");box.className="m";var h=document.createElement("h2");h.textContent=m.name+(m.real_name?" ("+m.real_name+")":"");box.append(h);var cbs=[];
+  TIERS.forEach(function(t){var row=document.createElement("div");row.className="tier";var b=document.createElement("b");b.textContent=t[0]+" rank";row.append(b);
+   t[1].forEach(function(r){var l=document.createElement("label"),c=document.createElement("input");c.type="checkbox";c.value=r;c.checked=m.ranks.indexOf(r)>=0;cbs.push(c);l.append(c," "+r);row.append(l)});box.append(row)});
+  var save=document.createElement("button");save.textContent="Save ranks";save.onclick=function(){call({action:"setRanks",name:m.name,ranks:cbs.filter(function(c){return c.checked}).map(function(c){return c.value})}).then(render).catch(function(e){msg.textContent=e.message})};
+  var del=document.createElement("button");del.className="x";del.textContent="Remove member";del.style.marginLeft="10px";del.onclick=function(){if(confirm("Remove "+m.name+"?"))call({action:"remove",name:m.name}).then(render).catch(function(e){msg.textContent=e.message})};
+  box.append(save,del);list.append(box)})}
+function load(){call({action:"list"}).then(function(d){document.getElementById("login").hidden=true;render(d)}).catch(function(e){msg.textContent=e.message;sessionStorage.removeItem("bcg_admin")})}
+document.getElementById("login").addEventListener("submit",function(e){e.preventDefault();pw=document.getElementById("pw").value;sessionStorage.setItem("bcg_admin",pw);load()});
+if(pw)load();
+})();
+</script></body></html>
