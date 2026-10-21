@@ -115,7 +115,7 @@ if(!vid)vid=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():String(Math.r
 function bump(el,on){if(on&&!reduce){el.classList.remove("bump");void el.offsetWidth;el.classList.add("bump")}}
 function show(b){n.textContent=(srvClicks+pending).toLocaleString();bump(n,b)}
 function showM(b){mEl.textContent=srvMembers.toLocaleString();bump(mEl,b)}
-function chip(r){var s=document.createElement("span"),t={Founder:"s",Captain:"s","Head Of Military Affairs":"s",Commander:"a",Lieutenant:"b",Soldier:"c"}[r]||"d";s.className="chip t"+t;s.textContent=r;return s}
+function chip(r){var s=document.createElement("span"),t={Founder:"s",Captain:"s","Head Of Military Affairs":"s",Chief:"s",Commander:"a","Head of Planning":"a","Head of Preparation":"a","Head of Military Preparation":"a","Head of Music":"a",Lieutenant:"b",Soldier:"c"}[r]||"d";s.className="chip t"+t;s.textContent=r;return s}
 function renderMe(){var el=document.getElementById("me");el.textContent="";if(!me)return;var b=document.createElement("b");b.textContent=me.name;el.append("You are ",b," ");me.ranks.forEach(function(r){el.append(chip(r)," ")})}
 function renderRoster(l){var ul=document.getElementById("roster");if(!ul)return;ul.textContent="";(l||[]).forEach(function(m){var li=document.createElement("li"),nm=document.createElement("span");nm.className="nm";nm.textContent=m.name;li.append(nm);m.ranks.forEach(function(r){li.append(chip(r))});ul.append(li)})}
 function apply(d){if(!d||typeof d.clicks!=="number")return;srvClicks=d.clicks;srvMembers=d.members;me=d.me||null;show(false);showM(false);renderMe();renderRoster(d.roster)}

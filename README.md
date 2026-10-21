@@ -16,7 +16,7 @@ Static page (index.html) + one Netlify Function (/api/stats) + a Netlify Databas
 ## Admin (ranks)
 1. In Netlify: Site configuration > Environment variables > add `ADMIN_PASSWORD` with a long password only you know, then redeploy.
 2. Go to `/admin.html` on your site (it is not linked anywhere), log in, and tick ranks for each member. Save ranks or remove a member.
-3. New members start as Member. Ranks: Founder, Captain, Head Of Military Affairs (S), Commander (A), Lieutenant (B), Soldier (C), Recruit and Member (D).
+3. New members start as Member. Ranks: Founder, Captain, Head Of Military Affairs, Chief (S); Commander, Head of Planning, Head of Preparation, Head of Military Preparation, Head of Music (A); Lieutenant (B); Soldier (C); Recruit, Member (D). Use "Export members (CSV)" on the admin page to download a backup list.
 4. If the migrations `0002_ranks.sql` or `0003_real_name.sql` do not run automatically, run their SQL by hand.
 5. Members page: `/members.html`. Visitors see usernames and ranks; people who have joined also see real names.
 

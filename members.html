@@ -24,7 +24,7 @@ li{background:var(--panel);border-left:6px solid var(--yellow);padding:12px 18px
 <script>
 (function(){
 var vid="";try{vid=localStorage.getItem("bcg_vid")||""}catch(e){}
-var T={Founder:"s",Captain:"s","Head Of Military Affairs":"s",Commander:"a",Lieutenant:"b",Soldier:"c"};
+var T={Founder:"s",Captain:"s","Head Of Military Affairs":"s",Chief:"s",Commander:"a","Head of Planning":"a","Head of Preparation":"a","Head of Military Preparation":"a","Head of Music":"a",Lieutenant:"b",Soldier:"c"};
 function chip(r){var s=document.createElement("span");s.className="chip t"+(T[r]||"d");s.textContent=r;return s}
 fetch("/api/stats",{headers:{"x-visitor-id":vid}}).then(function(r){return r.json()}).then(function(d){
  document.getElementById("cnt").textContent=d.members;

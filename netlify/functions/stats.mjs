@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 
 export const config = { path: "/api/stats" };
 
-const RANKS = ["Founder", "Captain", "Head Of Military Affairs", "Commander", "Lieutenant", "Soldier", "Recruit", "Member"];
+const RANKS = ["Founder", "Captain", "Head Of Military Affairs", "Chief", "Commander", "Head of Planning", "Head of Preparation", "Head of Military Preparation", "Head of Music", "Lieutenant", "Soldier", "Recruit", "Member"];
 const MAX_JOINS_PER_IP = 5; // friends sharing wifi still fit
 const best = (r) => Math.min(...r.map((x) => RANKS.indexOf(x)).filter((i) => i >= 0), 99);
 const json = (o, status = 200) => Response.json(o, { status, headers: { "Cache-Control": "no-store" } });

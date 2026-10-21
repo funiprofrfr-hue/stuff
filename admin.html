@@ -6,6 +6,7 @@ body{margin:0;background:#07153a;color:#eef3ff;font-family:Georgia,serif;line-he
 main{max-width:900px;margin:0 auto}h1{margin-top:0}
 input[type=password]{font:inherit;padding:10px;font-size:1.1rem;border:2px solid #6aa8ff;background:#0a2150;color:#eef3ff}
 button{font:inherit;font-weight:bold;background:#f6ff52;color:#0a2150;border:0;padding:8px 16px;cursor:pointer}
+#export{margin-bottom:8px}
 button.x{background:#ff8a9a}
 .m{background:#14336f;border-left:6px solid #f6ff52;padding:14px 18px;margin:12px 0}
 .m h2{margin:0 0 8px;font-size:1.2rem;overflow-wrap:anywhere}
@@ -16,14 +17,21 @@ button.x{background:#ff8a9a}
 <h1>Baby Chair Gang admin</h1>
 <form id="login"><label>Admin password <input id="pw" type="password" autocomplete="current-password" required></label> <button>Log in</button></form>
 <p class="msg" id="msg" role="alert"></p>
+<button id="export" hidden>Export members (CSV)</button>
 <div id="list"></div>
 </main>
 <script>
 (function(){
-var TIERS=[["S",["Founder","Captain","Head Of Military Affairs"]],["A",["Commander"]],["B",["Lieutenant"]],["C",["Soldier"]],["D",["Recruit","Member"]]];
+var TIERS=[["S",["Founder","Captain","Head Of Military Affairs","Chief"]],["A",["Commander","Head of Planning","Head of Preparation","Head of Military Preparation","Head of Music"]],["B",["Lieutenant"]],["C",["Soldier"]],["D",["Recruit","Member"]]];
 var pw=sessionStorage.getItem("bcg_admin")||"",msg=document.getElementById("msg"),list=document.getElementById("list");
 function call(body){body.password=pw;return fetch("/api/admin",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error||"Error");return j})})}
-function render(d){msg.textContent="";list.textContent="";if(!d.members.length){list.textContent="Nobody has joined yet.";return}
+var last=null;
+function cell(v){v=String(v==null?"":v);if(/^[=+\-@\t\r]/.test(v))v="'"+v;return '"'+v.replace(/"/g,'""')+'"'}
+function exportCsv(){if(!last)return;var rows=[["Username","Real name","Ranks","Joined"]].concat(last.members.map(function(m){return [m.name,m.real_name||"",m.ranks.join("; "),m.joined_at||""]}));
+ var csv="\ufeff"+rows.map(function(r){return r.map(cell).join(",")}).join("\r\n");
+ var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));a.download="baby-chair-gang-members-"+new Date().toISOString().slice(0,10)+".csv";document.body.append(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},1000)}
+document.getElementById("export").addEventListener("click",exportCsv);
+function render(d){last=d;document.getElementById("export").hidden=false;msg.textContent="";list.textContent="";if(!d.members.length){list.textContent="Nobody has joined yet.";return}
  d.members.forEach(function(m){var box=document.createElement("div");box.className="m";var h=document.createElement("h2");h.textContent=m.name+(m.real_name?" ("+m.real_name+")":"");box.append(h);var cbs=[];
   TIERS.forEach(function(t){var row=document.createElement("div");row.className="tier";var b=document.createElement("b");b.textContent=t[0]+" rank";row.append(b);
    t[1].forEach(function(r){var l=document.createElement("label"),c=document.createElement("input");c.type="checkbox";c.value=r;c.checked=m.ranks.indexOf(r)>=0;cbs.push(c);l.append(c," "+r);row.append(l)});box.append(row)});

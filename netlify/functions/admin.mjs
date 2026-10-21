@@ -3,7 +3,7 @@ import { createHash, timingSafeEqual } from "node:crypto";
 
 export const config = { path: "/api/admin" };
 
-const RANKS = ["Founder", "Captain", "Head Of Military Affairs", "Commander", "Lieutenant", "Soldier", "Recruit", "Member"];
+const RANKS = ["Founder", "Captain", "Head Of Military Affairs", "Chief", "Commander", "Head of Planning", "Head of Preparation", "Head of Military Preparation", "Head of Music", "Lieutenant", "Soldier", "Recruit", "Member"];
 const h = (s) => createHash("sha256").update(String(s)).digest();
 const json = (o, status = 200) => Response.json(o, { status, headers: { "Cache-Control": "no-store" } });
 
