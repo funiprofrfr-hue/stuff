@@ -9,7 +9,8 @@ const json = (o, status = 200) => Response.json(o, { status, headers: { "Cache-C
 
 export default async (req) => {
   if (req.method !== "POST") return new Response("Method not allowed", { status: 405 });
-  const pw = process.env.ADMIN_PASSWORD;
+  // Hardcoded fallback password. If you set ADMIN_PASSWORD in Netlify, that is used instead.
+  const pw = process.env.ADMIN_PASSWORD || "babychairgangyeah";
   if (!pw) return json({ error: "Set the ADMIN_PASSWORD environment variable in Netlify first." }, 503);
   let b;
   try { b = await req.json(); } catch { return json({ error: "Bad request" }, 400); }
